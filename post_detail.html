@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./imgs/postDetials.png" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css">
+    <title>Post Details</title>
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+
+  
+      <!-- Loader -->
+    <div id="loder" style="position: fixed; bottom: 0; top: 0; right: 0; left: 0; margin: auto auto; display: flex; justify-content:
+    center; align-items: center; z-index: 999999; height: 100px; width: 200px; background-color: rgba(128, 128, 128, 0.295); border-radius: 10px;">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+      <div></div><div></div><div></div><div></div><div></div>
+      </div></div>
+    </div>
+      <!-- Loader -->
+
+      <!-- Alert -->
+      <div id="alert" class="show fade" style="position: fixed; right: 0; bottom: 0; width: 30%; z-index: 99999;"></div>
+
+     <!-- Modals -->
+      <!-- Login Modal -->
+      <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label userName">Username:</label>
+                  <input type="text" class="form-control" id="username-input" value="nour">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label passWord">Password:</label>
+                  <input type="password" class="form-control" id="password-input" value="123456">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Register Modal -->
+      <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Registeration</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Username:</label>
+                  <input type="text" class="form-control" id="reg-user" placeholder="Enter Username">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Password:</label>
+                  <input type="password" class="form-control" id="reg-pass" placeholder="Enter Password">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="reg-name" placeholder="Enter Name">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Email:</label>
+                  <input type="email" class="form-control" id="reg-email" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Profile Image</label>
+                  <input type="file" class="form-control" id="reg-image" placeholder="Image">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="register()">Register</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Modals -->
+
+       <!-- Nav Bar Start -->
+       <div class="container d-flex justify-content-center">
+        <div class="col-9">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-2 mb-5 bg-body-tertiary rounded">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="home.html">Redot</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profile</a>
+                            </li>
+                        </ul> 
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success me-2" id="log-btn"
+                            >Login</button>
+                            <img src="" id="imageNav" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-2 me-2"> 
+                            <span class="me-3" id="userNav"></span>
+                            <button type="button" class="btn btn-outline-danger" onclick="logout()" id="logout-btn">Logout</button>
+                            <button type="button" class="btn btn-outline-success me-1" data-bs-toggle="modal" data-bs-target="#reg-modal" id="reg-btn">Register</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+       </div>
+        <!-- Nav Bar End -->
+        <div class="container d-flex justify-content-center">
+          <div id="posts" class="col-9">
+                <!-- POST's info -->
+                 <h1>
+                  <span>
+                    Nour's
+                  </span>
+                    Post
+                </h1>
+              <div class="card shadow">
+                <div class="card-header">
+                    <img src="./imgs/pic_1.jpg" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-1">
+                    <b class="ms-2">Nour</b>
+                </div>
+                  <div class="card-body">
+                    <img src="./imgs/shuffle-02.jpg" class="w-100" alt="">
+                    <div class="text-secondary mt-1">2 min ago</div>
+                    <h5 class="mt-2">Nout title</h5>
+                    <p>Coffee + milk</p>
+                    <hr>
+                  </div>
+                  <div class="card-footer">
+                    <i class="bi bi-vector-pen align-bottom"></i>
+                    <span>
+                        (3) Comments 
+                    </span>
+                     <span id="post-tags">
+                        <button class="tag btn btn-sm btn-secondary rounded-5 ms-1 pe-none">Sports</button> 
+                     </span>
+                  </div>
+                  <div id="comments">
+                    <div class="comment-box ms-4 mt-5">
+                      <div class="userinfo mb-2">
+                        <img src="./imgs/pic_1.jpg" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-1"> <b>@userme</b>
+                      </div>
+                      hey i love your photo so much
+                    </div>
+                    <div class="comment-box ms-4 mt-5">
+                      <div class="userinfo mb-2">
+                        <img src="./imgs/pic_1.jpg" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-1"> <b>@userme</b>
+                      </div>
+                      hey i love your photo so much
+                    </div>
+                    <div class="comment-box ms-4 mt-5">
+                      <div class="userinfo mb-2">
+                        <img src="./imgs/pic_1.jpg" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-1"> <b>@userme</b>
+                      </div>
+                      hey i love your photo so much
+                    </div>
+                    <d  iv class="send-comment">
+                      <input type="text" class="mt-4 w-100 p-2 shadow mb-1" id="comment-section" >
+                      <button class="btn btn-primary send-btn d-flex ms-auto" onclick="sendComment()">Send</button>
+                    </div>
+                  </div>
+            </div>
+         </div> 
+       </div>
+    
+</body>  
+
+  <!-- outside js  -->
+  
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="axios.min.js"></script>
+  <script src="main.js"></script>
+  
+  <!-- inside js  -->
+
+  <script>
+
+
+    let urlParam = new URLSearchParams(window.location.search)
+    let postId = urlParam.get("postId")
+
+    setupUI()
+    getPostDetails()
+    toggleLoder(false)
+
+    function getPostDetails() {
+      axios.get(`https://tarmeezacademy.com/api/v1/posts/${postId}`)
+      .then((res)=> {
+        let post = res.data.data
+        let postTitle = '';
+        let postBody = document.getElementById("posts")
+        let comments = post.comments
+        let commentContent = ''
+
+         // Check the title
+          postBody.innerHTML = "";
+          if (post.title != null) {
+                      postTitle = post.title
+              }
+              // Comments
+            for(comment of comments) {
+              commentContent += ` 
+                    <div class="comment-box ms-4 mt-5 mb-3">
+                      <div class="userinfo mb-2">
+                        <img src="${comment.author.profile_image}" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-1"> <b>@${comment.author.username}</b>
+                      </div>
+                        ${comment.body}
+                    </div>
+                    `}
+
+                  let content = `
+                    <h1 style="margin-bottom:50px">
+                        <span>
+                             ${post.author.username}'s
+                        </span> Post
+                      </h1>
+                    <div class="card shadow mb-5">
+                      <div class="card-header">
+                        <img src="${post.author.profile_image}" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-1">
+                        <b class="ms-2">${post.author.username}</b>
+                      </div>
+                     <div class="card-body" onclick= "postDetails(${post.id})" style="cursor:pointer;">
+                        <img src="${post.image}" class="w-100" alt="">
+                        <div class="text-secondary mt-1">${post.created_at}</div>
+                        <h5 class="mt-2">${postTitle}</h5>
+                        <p>${post.body}</p>
+                        <hr>
+                     </div>   
+                    <div class="card-footer">
+                        <i class="bi bi-vector-pen align-bottom"></i>
+                        <span>
+                           (${post.comments_count}) Comments 
+                        </span>
+                         <span id="post-tags">
+                            <button class="tag btn btn-sm btn-secondary rounded-5 ms-1 pe-none">Sports</button> 
+                         </span>
+                        </div>
+                        <div id="comments">
+                            ${commentContent}
+                        </div>
+                           <div id="comment-div" class= "ms-2 me-2">
+                             <input type="text" class="mt-4 form-control p-2 shadow" id="comment-section" placeholder="add your comment...">
+                             <button class="btn btn-outline-primary send-btn d-flex ms-auto" onclick="sendComment()">Send</button>
+                          </div>
+                       </div>
+                       </div>
+                    </div> `
+
+                  postBody.innerHTML = content
+      })
+    }
+       function sendComment() {
+                    let comment = document.getElementById("comment-section").value  
+                     let token = localStorage.getItem("token")
+                    axios.post(`https://tarmeezacademy.com/api/v1/posts/${postId}/comments`, {
+                       body : comment
+                      } , {
+                        headers : {
+                          authorization: `Bearer ${token}`
+                        }
+                      }).then((res)=> {
+                        showAlert("You Added A New Comment" , "success" , 'alert')
+                        getPostDetails()
+                                            }).catch((error)=> {
+                        showAlert(error.response.data.message , 'danger' , 'alert')
+                      })
+              }
+ 
+  </script>
+
+</html>

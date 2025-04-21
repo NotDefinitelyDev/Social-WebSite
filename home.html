@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./imgs/images.png" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css">
+    <title>Sharea</title>
+
+</head>
+<body>
+
+  <!-- Loader -->
+   <div id="loder" style="position: fixed; bottom: 0; top: 0; right: 0; left: 0; margin: auto auto; display: flex; justify-content:
+    center; align-items: center; z-index: 999999; height: 100px; width: 200px; background-color: rgba(128, 128, 128, 0.295); border-radius: 10px;">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+      <div></div><div></div><div></div><div></div><div></div>
+      </div></div>
+  </div>
+  <!-- Loader -->
+
+
+  <!-- Alert -->
+  <div id="alert" class="show fade" style="position: fixed; right: 0; bottom: 0; width: 30%; z-index: 99999;"></div>
+  <!-- Add Post Button -->
+   <div id="add-post" class="shadow" onclick="addBtn()">+</i></div>
+
+    <!-- Modals -->
+      <!-- Login Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label userName">Username:</label>
+                  <input type="text" class="form-control" id="username-input" value="nour">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label passWord">Password:</label>
+                  <input type="password" class="form-control" id="password-input" value="123456">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Register Modal -->
+      <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Registeration</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Username:</label>
+                  <input type="text" class="form-control" id="reg-user" placeholder="Enter Username">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Password:</label>
+                  <input type="password" class="form-control" id="reg-pass" placeholder="Enter Password">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="reg-name" placeholder="Enter Name">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Email:</label>
+                  <input type="email" class="form-control" id="reg-email" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Profile Image</label>
+                  <input type="file" class="form-control" id="reg-image" placeholder="Image">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="register()">Register</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Post & Edit Post Modal -->
+      <div class="modal fade" id="post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="post=modal-title">Create A New Post</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Title:</label>
+                  <input type="text" class="form-control" id="post-title">
+                  <!-- Checker for Edit Or Create -->
+                  <input type="hidden" id="post-id-input" value="">
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control" style="resize: none;" id="post-body"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Image</label>
+                  <input type="file" class="form-control" id="post-image">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="createPost()" id="editOrCreate">Create</button>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <!-- Delete modal -->
+      <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="delete-modal-title">Are You Sure?</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">You Can't Get Your Post Back Again !</label>
+                  <input type="hidden" id="post-delete-con" value="">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">I'm Kidding</button>
+              <button type="button" class="btn btn-danger" onclick="sureDeleteBtn()" >Delete</button>
+            </div>
+          </div>
+        </div> 
+      </div>
+
+
+
+    <!-- Nav Bar Start -->
+    <div class="container d-flex justify-content-center">
+        <div class="col-9">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-2 mb-5 bg-body-tertiary rounded">
+                <div class="container-fluid">
+                    <a class="navbar-brand mb-1" href="home.html">Sharea</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link ms-1" onclick="currentUser()" style="cursor: pointer;">Profile</a>
+                            </li>
+                        </ul> 
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#login-modal" class="btn btn-outline-success me-2" id="log-btn"
+                            >Login</button>
+                            <img src="" id="imageNav" alt="" style="width: 40px;" class="border border-primary-subtle rounded-circle border-2 me-2"> 
+                            <span class="me-3" id="userNav"></span>
+                            <button type="button" class="btn btn-outline-danger" onclick="logout()" id="logout-btn">Logout</button>
+                            <button type="button" class="btn btn-outline-success me-1" data-bs-toggle="modal" data-bs-target="#reg-modal" id="reg-btn">Register</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Start Main Content -->
+     <div class="container d-flex justify-content-center">
+        <div id="posts" class="col-9">
+            <!-- POST -->
+        </div>
+     </div>
+    <!-- End Main Content -->
+     
+</body>
+
+    <!-- Outside js -->
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="axios.min.js"></script>
+    <script src="main.js"></script>
+
+    <!-- same file js -->
+
+    <script>
+
+      setupUI();
+      getPosts()
+
+        // Infinit Scroll
+          window.addEventListener("scroll" , ()=> {
+            const endOfPage = window.innerHeight + window.pageYOffset >= document.body.scrollHeight
+            if(endOfPage && currentPage <= lastPage) {
+              getPosts(false, currentPage)
+              currentPage++
+            }
+          })
+        // Infinit Scroll //
+
+ // Post API Request
+     
+ function getPosts(rel = true,page) {
+    toggleLoder(true)
+     axios.get(`${baseURL}/posts?limit=15&page=${page}`)
+      .then(function (response) {
+        toggleLoder(false)
+         let posts = response.data.data
+         let postTitle = '';
+         let hideImage = './imgs/shuffle-02.jpg'
+         lastPage = response.data.meta.last_page
+         if (rel) {
+             postBody.innerHTML = ""
+        }
+
+         // (for of) Method    
+         for(post of posts) {
+          console.log(post)
+          //  Hide X Photos
+          if(post.author.id == '1246' || post.author.id == '1164' || post.author.id == '1360') {
+            post.image = hideImage
+           }
+              // Check the title
+                if (post.title != null) {
+                    postTitle = post.title
+                }
+                  // Edit user 
+                  let userInfoId = getUserName();
+                  console.log(userInfoId)
+                  let isThisUser = userInfoId != null && userInfoId.id == post.author.id;
+                  let editContent = '';
+                  if(isThisUser) {
+                    editContent =  ` 
+                           <div style="float:right; font-size:20px; cursor:pointer;" onclick="editPost(this)"
+                           data-post='${JSON.stringify(post)}'><i class="bi bi-pencil-square"></i>
+                          </div>
+                           <div style="float:right; font-size:20px; cursor:pointer; margin-right:15px;"
+                           onclick="deletePost(this)" 
+                           data-post='${JSON.stringify(post)}'><i class="bi bi-trash3"></i>
+                          </div>
+                       `}
+                  // The content
+                 let content = `
+                   <div class="card shadow mb-5">
+                    <div class="card-header">
+                        <img src="${post.author.profile_image}" alt="" style="width: 40px; cursor:pointer;" class="border border-primary-subtle rounded-circle border-1" onclick= "userDetails(${post.author.id})">
+                        <b class="ms-2" onclick= "userDetails(${post.author.id})" style= "cursor:pointer;">${post.author.username}</b>
+                         ${editContent}
+                    </div>
+                    <div class="card-body" onclick= "postDetails(${post.id})" style="cursor:pointer;">
+                        <img src="${post.image}" class="w-100" alt="">
+                        <div class="text-secondary mt-1">${post.created_at}</div>
+                        <h5 class="mt-2">${postTitle}</h5>
+                        <p>${post.body}</p>
+                        <hr>
+                    <div class="card-footer">
+                        <i class="bi bi-vector-pen align-bottom"></i>
+                        <span>
+                            (${post.comments_count}) Comments 
+                        </span>
+                         <span id="post-tags">
+                            <button class="tag btn btn-sm btn-secondary rounded-5 ms-1 pe-none">Sports</button> 
+                         </span>
+                        </div>
+                      </div>`
+                   postBody.innerHTML += content
+        }});
+    }
+
+      // Details
+    function postDetails(id) {
+      window.location = `./post_detail.html?postId=${id}`
+    }
+
+    function userDetails(id) {
+      window.location = `./profile.html?Id=${id}`
+    }
+
+      // Edit Post Btn
+    function editPost(btn) {
+      // Post object with all the info
+      let postInfo = JSON.parse(btn.getAttribute("data-post"));
+      // Edit innerHtml Title
+      document.getElementById("post=modal-title").innerHTML = "Edit Post"
+      // Make a copy of the reg-modal for edit
+      let editPostModal = new bootstrap.Modal(document.getElementById("post-modal"),{})
+      editPostModal.toggle()
+      //
+      document.getElementById("post-id-input").value = postInfo.id
+      // Edit the post itself
+        document.getElementById("editOrCreate").innerHTML = "Update"
+        document.getElementById("post-title").value = postInfo.title
+        document.getElementById("post-body").value = postInfo.body
+    }
+
+        // Delete Post Btn
+    function deletePost(btn) {
+      // Post object with all the info
+      let postInfo = JSON.parse(btn.getAttribute("data-post"));
+      // Make a copy of the reg-modal for edit
+      document.getElementById("post-delete-con").value = postInfo.id
+      let deletePostModal = new bootstrap.Modal(document.getElementById("delete-modal"),{})
+      deletePostModal.toggle()
+    }
+
+      // Delete Post Btn
+    function sureDeleteBtn() {
+      let token = localStorage.getItem("token")
+      let postId = document.getElementById("post-delete-con").value;
+      axios.delete(`https://tarmeezacademy.com/api/v1/posts/${postId}` , {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        }).then((res)=> {
+          let deleteModal = document.getElementById("delete-modal")
+          let modalInstance = bootstrap.Modal.getInstance(deleteModal)
+          modalInstance.hide()
+          showAlert('Your Post Has Been Deleted', "success" ,'alert')
+          getPosts()
+        })
+    }
+
+      // Add Post Btn
+    function addBtn() {
+      // Edit innerHtml Title
+      document.getElementById("post=modal-title").innerHTML = "Create A Post"
+      // Make a copy of the reg-modal for edit
+      let editPostModal = new bootstrap.Modal(document.getElementById("post-modal"),{})
+      editPostModal.toggle()
+      //
+      document.getElementById("post-id-input").value = ""
+      // Edit the post itself
+        document.getElementById("editOrCreate").innerHTML = "Create"
+        document.getElementById("post-title").value = ""
+        document.getElementById("post-body").value = ""
+    }
+
+
+    
+ 
+
+    </script>
+</html>
