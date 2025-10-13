@@ -25,6 +25,7 @@ body {
     line-height: .8;
     cursor: pointer;
     display: none;
+    z-index: 99999;
 }
 
 #comment-section {
@@ -124,3 +125,15 @@ body {
     box-sizing: content-box;
  }
 
+
+@media (max-width:1220px) {
+  .alert-popup {
+  width: 40% !important;
+  padding-right: 30px;
+ }
+}
+
+  .alert-popup {
+
+  padding-right: 20px;
+ }

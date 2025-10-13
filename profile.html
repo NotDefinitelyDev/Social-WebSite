@@ -37,7 +37,7 @@
     <!-- Loader -->
 
     <!-- Alert -->
-    <div id="alert" class="show fade" style="position: fixed; right: 0; bottom: 0; width: 30%; z-index: 99999;"></div>
+    <div id="alert"   class="show fade" style="position: fixed; right: 0; bottom: 0; width: 90%; z-index: 99999;"></div>
       <!-- Modals -->
       <!-- Login Modal -->
       <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -165,10 +165,10 @@
 
     <!-- Nav Bar Start -->
     <div class="container d-flex justify-content-center">
-        <div class="col-9">
+        <div class="col-lg-9  col-sm-11  col-12">
             <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-2 mb-5 bg-body-tertiary rounded">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="home.html">Sharea</a>
+                    <a class="navbar-brand" href="index.html">Sharea</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -193,7 +193,7 @@
 
     <!-- Start the main info -->
         <div class="container d-flex justify-content-center">
-            <div id="info" class="col-9">
+            <div id="info" class="col-lg-9  col-sm-11  col-12">
 
                             <!-- User Info -->
                             <h1 class="mb-4">
@@ -286,7 +286,7 @@
             document.getElementById("user-name").innerHTML = `Name: ${user.name}`
             document.getElementById("user-head").innerHTML = user.name
             document.getElementById("post-count").innerHTML = user.posts_count
-            document.getElementById("user-img").src = user.profile_image
+            document.getElementById("user-img").src =  user.profile_image || "./imgs/download-removebg-preview (1).png";
             document.getElementById("comments-count").innerHTML = user.comments_count
          }) 
       }
